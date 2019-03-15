@@ -15,8 +15,8 @@
 (define-syntax-rule (define-inputs (input-bit input ...) ...)
   (begin
     (define (gen-sym-pair)
-      (define-symbolic* input-old number?)
-      (define-symbolic* input-new number?)
+      (define-symbolic* input-old integer?)
+      (define-symbolic* input-new integer?)
       (cons input-old input-new))
     (begin
       (define-symbolic input-bit boolean?)
@@ -29,8 +29,8 @@
 (define-syntax-rule (define-outputs (output output-function) ...)
   (begin
     (define (gen-sym-pair)
-      (define-symbolic* output-old number?)
-      (define-symbolic* output-new number?)
+      (define-symbolic* output-old integer?)
+      (define-symbolic* output-new integer?)
       (cons output-old output-new))
     
     (define output (gen-sym-pair))

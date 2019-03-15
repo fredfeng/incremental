@@ -93,7 +93,7 @@
 
 (define (limit-num-variables dnf-expr max-variables)
   (define (is-used variable)
-    (define-symbolic* used number?)
+    (define-symbolic* used integer?)
     (define condition (apply && (map car (car variable))))
     (cons used (= used (if condition 0 1))))
   
@@ -106,7 +106,7 @@
   (apply + (for*/list ([var (cdr dnf-expr)]
                        [term (car var)])
              (begin
-               (define-symbolic* used number?)
+               (define-symbolic* used integer?)
                (if (car term) 0 1)))))
 
 (define (simplify dnf-expr model)
@@ -132,7 +132,7 @@
           (define complexity (evaluate (total-variables dnf-expr) m1))
           (display "complexity: ")
           (displayln complexity)
-          (displayln (dnf-s-expr dnf-expr m1))
+          ; (displayln (dnf-s-expr dnf-expr m1))
           
           (do-simplify m1 complexity))))
   
